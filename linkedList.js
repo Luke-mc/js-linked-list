@@ -13,6 +13,8 @@ function linkedListGenerator(){
 
 
 
+
+
     function getHead() {
 
     return head;
@@ -22,55 +24,85 @@ function linkedListGenerator(){
     function getTail() {
       return tail;
 
-      };
+    };
 
     function add(value) {
-      index++;
+      index = index + 1;
 
       var newNode = {
         value:value,
         next: null
       };
 
-
       if(head === null){
-
         head = newNode;
 
         tail = newNode;
       }
       else{
 
+          getTail().next = newNode;
 
-        tail.next = newNode.value;
-
-        tail = newNode;
+          tail = newNode;
 
 
       }
+
+
 
       return newNode;
 
     };
 
-    function remove() {
+    function remove(number) {
+      var upOne = number + 1;
+      var downOne = number - 1;
+      var thisNode = get(number);
+      var prevNode = get(downOne);
+      var nextNode = get(upOne);
+      index = index -1;
+
+      if(number <= index){
+        if(number > 0 && number < index){
+          prevNode.next = nextNode;
+        }
+        else if(number === index){
+
+
+          tail = prevNode;
+
+          prevNode.next = null;
+
+
+        }
+        else{
+          head = getHead().next;
+        }
+      }else{
+         return false;
+       }
+     };
+
+     function insert() {
+
+
+
 
     };
 
      function get(number) {
-      var i = 0;
+      var nextNode = getHead();
+      if(number < index){
+        for(var i = 0; i < number; i++){
 
-      while (i < number) {
+          nextNode = nextNode.next;
 
-        head.value = head.next;
-
-
-
-        i++;
-
+        }
+       return nextNode;
       }
-      return head;
-
+      else{
+         return false;
+      }
      };
 
      function insert() {
@@ -91,6 +123,7 @@ return {
 
 }
 
+
 myLinkList.add('hi');
 
 myLinkList.add('what');
@@ -99,11 +132,13 @@ myLinkList.add('hey');
 
 myLinkList.add('luke');
 
+myLinkList.remove(3);
+
 console.log(myLinkList.getHead());
 
 console.log(myLinkList.getTail());
 
-console.log(myLinkList.get(1));
+
 
 
 
