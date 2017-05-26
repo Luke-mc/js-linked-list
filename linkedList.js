@@ -12,9 +12,6 @@ function linkedListGenerator(){
    var index = 0;
 
 
-
-
-
     function getHead() {
 
     return head;
@@ -60,7 +57,7 @@ function linkedListGenerator(){
       var thisNode = get(number);
       var prevNode = get(downOne);
       var nextNode = get(upOne);
-      index = index -1;
+      index = index - 1;
 
       if(number <= index){
         if(number > 0 && number < index){
@@ -68,11 +65,9 @@ function linkedListGenerator(){
         }
         else if(number === index){
 
-
           tail = prevNode;
 
           prevNode.next = null;
-
 
         }
         else{
@@ -83,12 +78,6 @@ function linkedListGenerator(){
        }
      };
 
-     function insert() {
-
-
-
-
-    };
 
      function get(number) {
       var nextNode = getHead();
@@ -105,7 +94,37 @@ function linkedListGenerator(){
       }
      };
 
-     function insert() {
+     function insert(value, number) {
+      var upOne = number + 1;
+      var downOne = number - 1;
+      var thisNode = get(number);
+      var prevNode = get(downOne);
+      var nextNode = get(upOne);
+      index = index + 1;
+
+      var newNode = {
+        value:value,
+        next: null
+      };
+
+      if(number >= 0 && number < index){
+        if(number === 0){
+
+          head = newNode;
+
+          newNode.next = thisNode;
+
+        }
+        else if(number > 0 && number < index){
+
+          prevNode.next = newNode;
+
+          newNode.next = thisNode;
+        }
+      }
+      else{
+        return false;
+      }
 
     };
 
@@ -123,28 +142,6 @@ return {
 
 }
 
-
-myLinkList.add('hi');
-
-myLinkList.add('what');
-
-myLinkList.add('hey');
-
-myLinkList.add('luke');
-
-myLinkList.remove(3);
-
-console.log(myLinkList.getHead());
-
-console.log(myLinkList.getTail());
-
-
-
-
-
-
-
-var myLinkList = linkedListGenerator();
 
 
 
